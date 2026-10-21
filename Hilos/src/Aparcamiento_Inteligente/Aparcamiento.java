@@ -9,28 +9,22 @@ package Aparcamiento_Inteligente;
  * @author 2DAM
  */
 public class Aparcamiento {
-    int maxPlazas = 3;
-    int dispoPlazas = 0;
 
-    public Aparcamiento(int maxPlazas, int dispoPlazas) {
-        this.maxPlazas = maxPlazas;
-        this.dispoPlazas = dispoPlazas;
+    private int maxPlazas = 3;
+    private int dispoPlazas = 3;
+
+    public synchronized void entrar(String coche) throws InterruptedException {
+        while (dispoPlazas == 0) {
+            System.out.println(coche + " espera\nAparcamiento completo.");
+            wait();
+        }
+        dispoPlazas--;
+        System.out.println(coche + " entra\nPlazas libres: " + dispoPlazas);
     }
-    
-    
-    public void entrar(String Coche){
-        dispoPlazas -=1;
-        Coche.notify();
-        
-        
+
+    public synchronized void salir(String coche) {
+        dispoPlazas++;
+        System.out.println(coche + " sale\nPlazas libres: " + dispoPlazas);
+        notify();
     }
-    
-    
-    public void salir(String Coche){
-        dispoPlazas +=1;
-         
-    }
-    
-    
-    
 }

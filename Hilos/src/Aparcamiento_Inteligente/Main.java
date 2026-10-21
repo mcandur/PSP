@@ -10,13 +10,13 @@ package Aparcamiento_Inteligente;
  */
 public class Main {
     public static void main(String[] args) {
-        Aparcamiento ap = new Aparcamiento(3, 0);
+        Aparcamiento ap = new Aparcamiento();
         
-        for(int i = 0;  i>=8; i++){
-            String c = ("c" + i);
-            Coche c = new Coche(ap);
-            
-            
+        for (int i = 1; i <= 8; i++) {
+            String nombre = "Coche " + i;
+
+            Coche coche = new Coche(nombre, ap);
+            coche.start();
         }
         
     }

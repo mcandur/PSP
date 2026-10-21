@@ -12,37 +12,29 @@ import java.time.Duration;
  */
 public class Coche extends Thread{
     
-    Aparcamiento aparcamiento;
+    private Aparcamiento aparcamiento;
+    private String nombre;
     
-    public Coche(Aparcamiento aparcamiento){
+    public Coche(String nombre, Aparcamiento aparcamiento){
+        this.nombre = nombre;
         this.aparcamiento = aparcamiento;
     }
     
     @Override
-    public void run(){
-        System.out.println("Intenta entrar en el aparcamiento");
-        synchronized(aparcamiento){
-            while(aparcamiento.dispoPlazas <= aparcamiento.maxPlazas){
-            try{
-                aparcamiento.wait();
-                System.out.println("Aparcamiento completo");
-            }catch(InterruptedException ex){}
+    public void run() {
+        try {
+        aparcamiento.entrar(getName());
+
+        int tiempo = (int)(Math.random() * 3001) + 2000;
+        Thread. sleep(tiempo);
+
+        aparcamiento.salir(getName());
+
+        } catch (InterruptedException e) {
+        System.out.println("Error en "+ getName());
+
         }
-        aparcamiento.entrar("");
-            
-        }
-        
-        
-        System.out.println("Ha entrado al aparcamiento");
-        try{
-            Thread.sleep(2000);
-        }catch(InterruptedException ex){}
-        
-        aparcamiento.salir("");
-        System.out.println("Ha salido del aparcamiento");
-        
-        
-        
+       
     }
     
 }
