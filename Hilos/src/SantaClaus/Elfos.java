@@ -21,6 +21,12 @@ public class Elfos extends Thread{
     @Override
     public void run(){
         
+        try {
+            taller.llegarElfos(id);
+        } catch (InterruptedException ex) {
+            System.getLogger(Elfos.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        
     }
     
 }

@@ -18,7 +18,7 @@ public class SantaClaus extends Thread{
     @Override
     public void run(){
         try{
-            taller.esperarRenos();
+            taller.esperarRenosYElfos();
             System.out.println("Santa reparte los regalos");
             
         }catch(InterruptedException ex){

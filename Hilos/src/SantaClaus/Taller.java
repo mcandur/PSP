@@ -10,6 +10,7 @@ package SantaClaus;
  */
 public class Taller {
     public int renosDispo = 0;
+    public int elfosDispo = 0;
     
     
     public synchronized void llegarReno(int id){
@@ -21,12 +22,34 @@ public class Taller {
         }
     }
     
-    public synchronized void esperarRenos() throws InterruptedException{
-        while (renosDispo < 9){
+    public synchronized void esperarRenosYElfos() throws InterruptedException{
+        while (renosDispo < 9 && elfosDispo <3){
             wait();
         }
         
-        System.out.println("Han llegado todos los renos, Santa despierta");
+        System.out.println("Santa despierta");
     }
+    
+    public synchronized void llegarElfos(int id) throws InterruptedException{
+        
+        
+        while(elfosDispo==3){
+            wait();
+        }
+        
+        elfosDispo++;
+        System.out.println("Elfo " + id + " está trabajando");
+        
+        if(elfosDispo == 3){
+            notifyAll();
+        }
+        
+     
+    }
+    
+
+    
+    
+    
     
 }
