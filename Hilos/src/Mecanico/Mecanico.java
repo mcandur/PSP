@@ -20,10 +20,23 @@ public class Mecanico extends Thread{
     @Override
     public void run() {
         try {
-            taller.esperarCoches();
+            while(true){
+                int numero = taller.cogerCoche();
+            
+                System.out.println("Mecánico reparando coche " + numero);
+                Thread.sleep(1000 + (int)(Math.random()*2000));
+                System.out.println("Mecánico termina de reparar coche " + numero);
+                taller.terminarReparacion(); //
+                
+            }
+            
+            
+            
+            
         } catch (InterruptedException ex) {
             System.getLogger(Mecanico.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
+        
        
     }
     
