@@ -44,7 +44,7 @@ public class Taller {
     
     public synchronized void terminarReparacion() throws  InterruptedException{ //(int id)
         
-        reparados[actual] = true; //no esta declarado reparados
+       // reparados[actual] = true; //no esta declarado reparados
         cochesTerminados++;
         if(plazasOcupadas > 0){
             actual = plazas[0];
@@ -56,7 +56,7 @@ public class Taller {
         }
         else{
             actual = 0;
-            ocupado = false; //no esta declarado ocupado
+            //ocupado = false; //no esta declarado ocupado
         }
         notifyAll();
         
